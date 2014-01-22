@@ -1,0 +1,12 @@
+{
+    "name": "sgp",
+    "version": "0.0.1",
+    "description": "Generates SuperGenPass passwords",
+    "repository": "https://github.com/kkaefer/sgp.git",
+    "bin": {
+        "sgp": "./bin/sgp"
+    },
+    "dependencies": {
+        "prompt": "~0.2.12"
+    }
+}

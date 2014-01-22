@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+var prompt = require('prompt');
+var sgp = require('../sgp.js');
+
+var properties = [{
+    name: 'domain:'
+}, {
+    name: 'password:',
+    hidden: true
+}];
+
+prompt.colors = false;
+prompt.message = '';
+prompt.delimiter = '';
+
+prompt.start({ stdout: process.stderr });
+prompt.get(properties, function(err, result) {
+    if (!err) {
+        process.stdout.write(sgp(result['password:'], result['domain:']), 10);
+    }
+});

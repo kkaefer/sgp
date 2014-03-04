@@ -16,6 +16,6 @@ prompt.delimiter = '';
 prompt.start({ stdout: process.stderr });
 prompt.get(properties, function(err, result) {
     if (!err) {
-        process.stdout.write(sgp(result['password:'], result['domain:']), 10);
+        process.stdout.write(sgp(result['password:'], result['domain:'], 10));
     }
 });

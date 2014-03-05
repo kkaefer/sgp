@@ -2,20 +2,35 @@
 var prompt = require('prompt');
 var sgp = require('../sgp.js');
 
-var properties = [{
-    name: 'domain:'
-}, {
-    name: 'password:',
-    hidden: true
-}];
+var cfg = require('../package.json');
+var parser = new (require('argparse').ArgumentParser)({
+  version: cfg.version,
+  addHelp: true,
+  description: cfg.description
+});
+parser.addArgument(['-d', '--domain'], {help: 'Domain to generate the password for'});
+parser.addArgument(['-p', '--password'], {help: 'Master password'});
+var args = parser.parseArgs();
 
+
+var properties = [];
 prompt.colors = false;
 prompt.message = '';
 prompt.delimiter = '';
 
+if (!args.domain) properties.push({name: 'domain:'});
+if (!args.password) properties.push({
+    name: 'password:',
+    hidden: true
+});
+
 prompt.start({ stdout: process.stderr });
 prompt.get(properties, function(err, result) {
     if (!err) {
-        process.stdout.write(sgp(result['password:'], result['domain:'], 10));
+        process.stdout.write(sgp(
+          args.password || result['password:'],
+          args.domain || result['domain:'],
+          10
+        ));
     }
 });

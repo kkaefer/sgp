@@ -1,3 +1,6 @@
+# OBSOLETE: INSTEAD, USE https://github.com/denis-sokolov/supergenpass-bin
+
+
 # API usage
 
 ```js
